@@ -15,3 +15,32 @@ Include the improved test code in this file.
 
 ## Answer
 
+Using pmd on Apache Commons Math and focusing on rule **JUnitUseExpected.md**. I found a warning on
+**commons-math\commons-math-legacy\src\test\java\org\apache\commons\math4\legacy\fitting\leastsquares\AbstractLeastSquaresOptimizerAbstractTest.java:341**
+  
+The annotation test should be `@Test(expected=Exception.class)` instead of `@Test`
+```
+@Test
+    public void testInconsistentSizes1() {
+        try {
+            LinearProblem problem
+                    = new LinearProblem(new double[][]{{1, 0},
+                    {0, 1}},
+                    new double[]{-1, 1});
+
+            //TODO why is this part here? hasn't it been tested already?
+            Optimum optimum = optimizer.optimize(problem.getBuilder().build());
+
+            Assert.assertEquals(0, optimum.getRMS(), TOL);
+            assertEquals(TOL, optimum.getPoint(), -1, 1);
+
+            //TODO move to builder test
+            optimizer.optimize(
+                    problem.getBuilder().weight(new DiagonalMatrix(new double[]{1})).build());
+
+            fail(optimizer);
+        } catch (DimensionMismatchException e) {
+            //expected
+        }
+    }
+```

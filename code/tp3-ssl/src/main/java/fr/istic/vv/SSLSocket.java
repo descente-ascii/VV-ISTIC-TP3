@@ -1,4 +1,4 @@
-package fr.istic.vv;
+package main.java.fr.istic.vv;
 
 public interface SSLSocket {
 

@@ -52,4 +52,35 @@ Use the following steps to design the test suite:
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
+1. isValidDate() (more or less the same view in class, haven't test thrown exceptions)
+    Characteristics   | Blocks
+    value of the year | <0, 0, valid leap year, valid common year
+    value of the month| even month, odd month, >=1 to <=12
+    value of the day  | >=1 to 31=<
 
+    nextDate()
+    characteristics | Blocks
+    common date     |
+    last day of common month |
+    last day of the year |
+    last day of february leap year |
+    last day of february non leap year |
+
+    previousDate()
+    Characterisitcs | Blocks
+    common date     |
+    first day of common month |
+    first day of the year |
+    first day of mars leap year |
+    first day of mars non leap year | 
+
+    compareTo()
+    param posterior to this |
+    param equal to this |
+    param anterior to this | 
+
+2. Fortunably, with the first coverage test I got 100% coverage. So I didn't do anything more on this question.
+
+3. Nothing to add
+
+4. The PIT execution generated 97 mutations and killed 89 with a mutation score of 92%.

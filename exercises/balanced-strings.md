@@ -25,4 +25,21 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+1. In this problem it's possible to identify multiples characteristics and so multiple blocks.
+    Characteristics  | Block
+        Empty String | ""
+        Blank String | " ", "   ", ...
+        Unbalanced string with brackets only | "{)[", "((}}", "[]]}", ...
+        Balanced string with brackets only | "{}", "[]", "()", "{[()]}", ...
+        String without brackets | "aaa", "123456", ...
+        Balanced String with brackets and non-bracket | "(abc)", "a{1[o]}", "{([0])}", ...
+        Unbalanced String with brackets and non-bracket | "a{5)", "((abc]]", ...
 
+2. I first wrote one test case per characteristics. The coverage indicates 100% of the function was reached, however one
+case failed (unbalancedBrackets). My implementation was missing the case where the string only contains opening brackets.
+This error fixed, I now get a full covered working function. Tho, I realise that my test cases may not be exhaustive.
+
+3. Not answered
+
+4. On the first PIT execution, I got 26 mutations and 21 were killed which gives me a mutation score of 81%.
+On org.pitest.mutationtest.engine.gregor.mutators.BooleanTrueReturnValsMutator I got 5 NO_COVERAGE mutants.
