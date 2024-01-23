@@ -1,7 +1,7 @@
-package test.java.fr.istic.vv;
+package fr.istic.vv;
 
 import org.junit.jupiter.api.Test;
-import main.java.fr.istic.vv.Date;
+import fr.istic.vv.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 

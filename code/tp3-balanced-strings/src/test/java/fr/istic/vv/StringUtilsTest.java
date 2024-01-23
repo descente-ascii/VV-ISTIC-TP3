@@ -1,9 +1,7 @@
-package test.java.fr.istic.vv;
+package fr.istic.vv;
 
-import main.java.fr.istic.vv.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import static  main.java.fr.istic.vv.StringUtils.isBalanced;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilsTest {

@@ -1,4 +1,4 @@
-package main.java.fr.istic.vv;
+package fr.istic.vv;
 
 import java.util.ArrayList;
 import java.util.List;

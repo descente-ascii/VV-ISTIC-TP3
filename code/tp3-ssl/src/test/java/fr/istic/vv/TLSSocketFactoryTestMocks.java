@@ -1,7 +1,7 @@
-package test.java.fr.istic.vv;
+package fr.istic.vv;
 
-import main.java.fr.istic.vv.SSLSocket;
-import main.java.fr.istic.vv.TLSSocketFactory;
+import fr.istic.vv.SSLSocket;
+import fr.istic.vv.TLSSocketFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,5 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TLSSocketFactoryTestMocks {
     @Test
     public void test1() {
+
     }
 }
