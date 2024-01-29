@@ -14,15 +14,28 @@ import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.*;
 
 public class TLSSocketFactoryTestMocks {
+
     @Test
     public void preparedSocket_NullProtocols() {
-            TLSSocketFactory f = new TLSSocketFactory();
-            SSLSocket socket = mock(SSLSocket.class);
-            when(socket.getSupportedProtocols()).thenReturn(null);
-            when(socket.getEnabledProtocols()).thenReturn(null);
-            doThrow(NullPointerException.class).when(socket).setEnabledProtocols(null);
+        TLSSocketFactory f = new TLSSocketFactory();
+        SSLSocket socket = mock(SSLSocket.class);
+        when(socket.getSupportedProtocols()).thenReturn(null);
+        when(socket.getEnabledProtocols()).thenReturn(null);
+        //doThrow(Exception.class).when(socket).setEnabledProtocols(null);
 
-            assertThrows(NullPointerException.class, () -> f.prepareSocket(socket));
+        doThrow(IllegalArgumentException.class).when(socket).setEnabledProtocols(any());
+        Exception exception = null;
+
+        // when
+        try {
+            f.prepareSocket(socket);
+        } catch (IllegalArgumentException t) {
+            exception = t;
+        }
+
+        // then
+        assertNotNull(exception);
+        //assertThrows(Exception.class, () -> f.prepareSocket(socket));
     }
 
     @Test
@@ -33,10 +46,16 @@ public class TLSSocketFactoryTestMocks {
         TLSSocketFactory f = new TLSSocketFactory();
         SSLSocket socket = mock(SSLSocket.class);
         when(socket.getSupportedProtocols()).thenReturn(supportedProtocols);
-        when(socket.getEnabledProtocols()).thenReturn(enabledProtocols);
+        when(socket.getEnabledProtocols()).thenReturn(shuffle(enabledProtocols));
         //doThrow(NullPointerException.class).when(socket).setEnabledProtocols(new String[0]);
 
-        assertArrayEquals(new String[]{"TLSv1.2", "TLSv1.1", "TLSv1", "TLS"}, socket.getEnabledProtocols());
+        assertTrue(Arrays.equals(new String[]{"TLSv1.2", "TLSv1.1", "TLSv1", "TLS"}, socket.getEnabledProtocols()));
 
+    }
+
+    private String[] shuffle(String[] in) {
+        List<String> list = new ArrayList<String>(Arrays.asList(in));
+        Collections.shuffle(list);
+        return list.toArray(new String[0]);
     }
 }
